@@ -1,0 +1,12 @@
+﻿<missions>
+    <mission7 type="CANOLA" expectedLiters="65190.839844" depositedLiters="65190.839844"/>
+    <mission9 type="OAT" expectedLiters="32605.638672" depositedLiters="32605.638672"/>
+    <mission10 type="COTTON" expectedLiters="8780.748047" depositedLiters="8780.748047"/>
+    <mission12 type="MAIZE" expectedLiters="18474.175781" depositedLiters="18474.175781"/>
+    <mission13 type="BARLEY" expectedLiters="23745.599609" depositedLiters="23745.599609"/>
+    <mission15 type="OAT" expectedLiters="34456.500000" depositedLiters="34456.500000"/>
+    <mission16 type="POTATO" expectedLiters="173460.000000" depositedLiters="173460.000000"/>
+    <mission18 type="OAT" expectedLiters="12360.627930" depositedLiters="12360.627930"/>
+    <mission20 type="MAIZE" expectedLiters="32017.208984" depositedLiters="32017.208984"/>
+    <mission21 type="POTATO" expectedLiters="310140.281250" depositedLiters="310140.281250"/>
+</missions>
