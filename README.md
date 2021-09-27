@@ -19,4 +19,4 @@ services:
 `docker-compose exec app sh`
 
 ## Testing
-`php artisan test`
+`docker-compose exec app php artisan test`
