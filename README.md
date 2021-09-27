@@ -1,4 +1,6 @@
-1. docker-compose up -d
+Install/Run (local)
+1. `cp .env.example .env`
+1. `docker-compose up -d`
 
 ## Enable xdebug
 Create a `docker-compose.override.yml` file and add the following:
