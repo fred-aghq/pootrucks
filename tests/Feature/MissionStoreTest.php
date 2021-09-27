@@ -9,14 +9,20 @@ use Tests\TestCase;
 
 class MissionStoreTest extends TestCase
 {
-    public function test_it_accepts_xml()
+    public function test_it_accepts_json()
     {
         $xml = file_get_contents(base_path('tests/data/poo.xml'));
-        $res = $this->postXML(route('missions.store'), $xml);
+        $payload = (array) new \SimpleXMLElement($xml);
+        $res = $this->json('POST', route('missions.store'), $payload);
         $res->assertOk();
-        dump($res->json());
     }
 
+    /**
+     * @param string $uri
+     * @param string $xml
+     * @return \Illuminate\Testing\TestResponse
+     * @deprecated we're switching to JSON
+     */
     protected function postXML(string $uri, string $xml)
     {
         return $this->call('POST', $uri, [], [], [], [], $xml);
