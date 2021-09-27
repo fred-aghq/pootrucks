@@ -31,8 +31,6 @@ class MissionStoreRequest extends FormRequest
 
     protected function prepareForValidation()
     {
-        $this->merge([
-            'parsed' => fractal($this->getContent(), new MissionStoreXMLTransformer()),
-        ]);
+
     }
 }
