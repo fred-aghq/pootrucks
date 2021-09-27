@@ -9,6 +9,6 @@ class MissionController extends Controller
 {
     public function store(MissionStoreRequest $request)
     {
-        return response()->json($request->get('parsed'), 200);
+        return response()->json($request->getContent(), 200);
     }
 }
