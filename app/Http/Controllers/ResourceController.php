@@ -3,17 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Models\Resource;
+use App\Models\ResourceType;
+use App\Transformers\ResourceStoreJsonTransformer;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
 {
     public function store(Request $request)
     {
-        $data = json_decode($request->getContent());
+        $data = $request->input();
         $resource = new Resource;
-        $resource->type = $data->type;
-        $resource->amount = $data->amount;
-        $resource->location = $data->location;
+
+        $resource->amount = $data['amount'];
+        $resource->location = $data['location'];
+
+        $type = ResourceType::firstOrCreate([
+            'name' => $data['type'],
+        ]);
+
+        $resource->setType($type);
+
         $resource->save();
         return response('Resource stored', 200)->header('Content-Type', 'text/plain');
     }

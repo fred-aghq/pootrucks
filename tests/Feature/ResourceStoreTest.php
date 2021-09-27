@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Resource;
 use App\Models\ResourceType;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -20,7 +21,14 @@ class ResourceStoreTest extends TestCase
             'location' => 'Des Moines, Iowa',
         ]);
 
-        $res->assertOk();
+        $res
+            ->assertOk()
+            ->assertJson([
+                'id' => Resource::first()->id,
+                'resource_type_id' => ResourceType::first()->id,
+                'amount' => 1234,
+                'location' => 'Des Moines, Iowa',
+            ]);
 
         $this->assertDatabaseHas('resources', [
             'amount' => 1234,
