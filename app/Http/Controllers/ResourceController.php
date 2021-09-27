@@ -24,7 +24,7 @@ class ResourceController extends Controller
         $resource->setType($type);
 
         $resource->save();
-        return response('Resource stored', 200)->header('Content-Type', 'text/plain');
+        return response()->json($resource, 200);
     }
 
     public function index(Request $request)
