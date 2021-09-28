@@ -6,8 +6,8 @@ use App\Http\Requests\ProductStoreRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use App\Models\ProductType;
-use App\Transformers\ResourceStoreJsonTransformer;
 use Illuminate\Http\Request;
+use App\Models\Location;
 
 class ProductController extends Controller
 {
@@ -17,15 +17,19 @@ class ProductController extends Controller
         $resource = new Product;
 
         $resource->amount = $data['amount'];
-        $resource->location = $data['location'];
 
         $type = ProductType::firstOrCreate([
             'name' => $data['type'],
         ]);
 
-        $resource->setType($type);
+        $location = Location::firstOrCreate([
+            'name' => $data['location'],
+        ]);
 
+        $resource->setType($type);
+        $resource->setLocation($location);
         $resource->save();
+
         return response(new ProductResource($resource), 201);
     }
 
