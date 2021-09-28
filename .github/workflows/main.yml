@@ -1,0 +1,18 @@
+name: CI
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Setup
+        run: cp .env.example .env
+        
+      - name: Build
+        run: docker-compose up -d
+
+      - name: Test
+        run: docker-compose exec -T app php artisan test
