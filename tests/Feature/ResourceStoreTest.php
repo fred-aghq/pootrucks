@@ -22,10 +22,13 @@ class ResourceStoreTest extends TestCase
         ]);
 
         $res
-            ->assertOk()
+            ->assertCreated()
             ->assertJson([
                 'id' => Resource::first()->id,
-                'resource_type_id' => ResourceType::first()->id,
+                'type' => [
+                    'id' => ResourceType::first()->id,
+                    'name' => 'corn',
+                ],
                 'amount' => 1234,
                 'location' => 'Des Moines, Iowa',
             ]);
