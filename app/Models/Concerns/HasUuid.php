@@ -10,10 +10,9 @@ trait HasUuid
     {
         static::creating(function ($model) {
             if (! $model->getKey()) {
-                $model->{$model->getKeyName()} = (string) Str::uuid();
+                $model->{$model->getKeyName()} = static::generateUuid();
             }
         });
-
         parent::boot();
     }
 
@@ -25,5 +24,10 @@ trait HasUuid
     public function getKeyType()
     {
         return 'string';
+    }
+
+    protected static function generateUuid()
+    {
+        return (string) Str::uuid();
     }
 }
