@@ -7,12 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Setup
         run: cp .env.example .env
-        
+
       - name: Build
-        run: docker-compose up -d
+        run: docker-compose up -d app
 
       - name: Test
         run: docker-compose exec -T app php artisan test
