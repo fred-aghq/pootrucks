@@ -2,8 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\Models\Resource;
-use App\Models\ResourceType;
+use App\Models\Product;
+use App\Models\ProductType;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use PHPUnit\Util\Test;
@@ -24,19 +24,19 @@ class ResourceStoreTest extends TestCase
         $res
             ->assertCreated()
             ->assertJson([
-                'id' => Resource::first()->id,
+                'id' => Product::first()->id,
                 'type' => [
-                    'id' => ResourceType::first()->id,
+                    'id' => ProductType::first()->id,
                     'name' => 'corn',
                 ],
                 'amount' => 1234,
                 'location' => 'Des Moines, Iowa',
             ]);
 
-        $this->assertDatabaseHas('resources', [
+        $this->assertDatabaseHas('products', [
             'amount' => 1234,
             'location' => 'Des Moines, Iowa',
-            'resource_type_id' => ResourceType::first()->id,
+            'product_type_id' => ProductType::first()->id,
         ]);
     }
 }

@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Resource extends Model
+class Product extends Model
 {
     use HasFactory, HasUuid;
 
-    public function resourceType(): BelongsTo
+    public function productType(): BelongsTo
     {
-        return $this->belongsTo(ResourceType::class);
+        return $this->belongsTo(ProductType::class);
     }
 
-    public function setType(ResourceType $type): self
+    public function setType(ProductType $type): self
     {
-        $this->resourceType()->associate($type);
+        $this->productType()->associate($type);
         return $this;
     }
 }

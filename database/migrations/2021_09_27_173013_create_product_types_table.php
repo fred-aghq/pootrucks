@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateResourceTypesTable extends Migration
+class CreateProductTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateResourceTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('resource_types', function (Blueprint $table) {
+        Schema::create('product_types', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->timestamps();
             $table->string('name')->index();
@@ -27,6 +27,6 @@ class CreateResourceTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resource_types');
+        Schema::dropIfExists('product_types');
     }
 }
