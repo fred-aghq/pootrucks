@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ResourceStoreRequest;
+use App\Http\Resources\ResourceResource;
 use App\Models\Resource;
 use App\Models\ResourceType;
 use App\Transformers\ResourceStoreJsonTransformer;
@@ -9,7 +11,7 @@ use Illuminate\Http\Request;
 
 class ResourceController extends Controller
 {
-    public function store(Request $request)
+    public function store(ResourceStoreRequest $request)
     {
         $data = $request->input();
         $resource = new Resource;
@@ -24,11 +26,11 @@ class ResourceController extends Controller
         $resource->setType($type);
 
         $resource->save();
-        return response()->json($resource, 200);
+        return response(new ResourceResource($resource), 201);
     }
 
     public function index(Request $request)
     {
-        return Resource::all();
+        return ResourceResource::collection(Resource::all());
     }
 }
