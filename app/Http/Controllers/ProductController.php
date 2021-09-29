@@ -2,35 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProductCreated;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use App\Models\ProductType;
 use Illuminate\Http\Request;
 use App\Models\Location;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
     public function store(ProductStoreRequest $request)
     {
         $data = $request->input();
-        $resource = new Product;
+        $data['id'] = Str::uuid()->toString();
 
-        $resource->amount = $data['amount'];
+        event(new ProductCreated($data));
 
-        $type = ProductType::firstOrCreate([
-            'name' => $data['type'],
-        ]);
-
-        $location = Location::firstOrCreate([
-            'name' => $data['location'],
-        ]);
-
-        $resource->setType($type);
-        $resource->setLocation($location);
-        $resource->save();
-
-        return response(new ProductResource($resource), 201);
+        return response(new ProductResource(Product::find($data['id'])), 201);
     }
 
     public function index(Request $request)
